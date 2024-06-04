@@ -1,4 +1,4 @@
-# CodingStyle ver. 2024.06.01
+# DevelopmentSpecification ver. 2024.06.04
 
 [TOC]
 
@@ -19,6 +19,30 @@
 - File names and folder names should not contain special characters other than `_`, `.`, `-`. Replace other characters with `-`
 
 - The file path storage management rules for each specific project should follow the content of the "Developing Note" section in the corresponding repository's `README.md`
+
+
+
+## General Documentation Comment Standards for Code
+
+- At the beginning of the code, there should be multi-line document comments, including:
+  - **@Description**: A brief description of the code content.
+  - **@Author**: The author who created the code.
+  - **@Email**: The email of the author who created the code.
+  - **@Date**: The date when the code was created.
+  - **@LastEditors**: The last contributor(s) to the code (same as the GitHub ID).
+  - **@LastEditTime**: The last time the code was modified.
+- Before functions, there should be multi-line document comments, including at least:
+  - **@brief**: A brief description of the function's purpose.
+  - **@param**: Comments on the function's parameters.
+  - **@return**: Comments on the function's return value.
+- In code files with multiple contributors, author comments can be added before functions and classes, which may include:
+  - **@author**: The creator of the function/class.
+  - **@email**: The email of the creator of the function/class.
+- Document comments before classes are not mandatory, but detailed comments are required for class members.
+
+Contributors who use Visual Studio Code for development are recommended to use the plugin [koroFileHeader](https://github.com/OBKoro1/koro1FileHeader) to add documentation comments.
+
+
 
 ## C/C++ Coding Style Specification
 
@@ -171,19 +195,28 @@ vector fibonacci(int _len) {
 ```cpp
 int targetNum;                      // The number to be checked in the fibonacci series.
 
-vector fibonacci(int _len);    // To figure out the first _len terms of the fibonacci series.
+
+vector<int> fibonacci(int _len);    // To figure out the first _len terms of the fibonacci series.
 int findInFibonacci(int _tgt);      // To figure out which term in the fibonacci series is the given number.
+
 
 /* 
  * @brief To figure out the first _len terms of the fibonacci series.
  * @param _len The length to figure out.
  * @return The fibonacci integer array.
  */
-vector fibonacci(int _len) {
+vector<int> fibonacci(int _len) {
     vector vec(_len);
     vec[0] = 0;
     vec[1] = 1;
     
+    for (int i = 2; i < _len; i++) {
+        vec[i] = vec[i - 1] + vec[i - 2];
+    }
+    
+    return vec;
+}
+
 /* 
  * @brief To figure out which term in the fibonacci series is the given number.
  * @param _tgt The number to be checked.
@@ -334,7 +367,7 @@ int findInFibonacci(int _tgt) {
 - When adding comments for statements inside a function, use `//` for in-line comments to explain the code block below the comment
 
 ```csharp
-  int targetNum; // The number to be checked in the fibonacci series.
+  int targetNum; 				// The number to be checked in the fibonacci series.
   
   // Check if the number is a fibonacci number
   if (isFibonacci(targetNum)) {
@@ -467,6 +500,7 @@ int findInFibonacci(int _tgt) {
 - Shader names should be named using a combination of uppercase English abbreviations and CamelCase notation.
 - Shader properties should use CamelCase notation and start with an underscore.
 - Custom functions should use CamelCase notation.
+- All custom variable names use the little camel nomenclature that does not begin with an underscore.
 
 ```shader
 Shader "MY_APP/MyCustomShader" {

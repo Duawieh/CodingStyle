@@ -1,4 +1,4 @@
-#  CodingStyle ver.2024.06.01
+#  DevelopmentSpecification ver.2024.06.04
 
 [TOC]
 
@@ -14,6 +14,26 @@
 - 文件名、文件夹名中不允许出现除 `_`、`.`、`-` 以外的特殊字符，其他字符以 `-` 替换
 
 每个具体项目中的文件路径存放管理规则依照对应仓库中的 README.md 中的 Developing Note 部分规定的内容执行。
+
+## 代码通用文档注释规范
+
+-   代码开头应有多行文档注释，内容包括：
+    -   @Description: 代码内容的简要描述
+    -   @Author: 代码创建作者
+    -   @Email: 代码创建作者邮箱
+    -   @Date: 代码创建日期
+    -   @LastEditors: 代码最后贡献者（与 GitHub ID 保持相同）
+    -   @LastEditTime: 代码最后修改时间
+-   函数前应有多行文档注释，内容至少包括：
+    -   @brief: 函数功能的简要描述
+    -   @param: 函数的参数注释
+    -   @return: 函数的返回值注释
+-   多贡献者的代码文件中，函数和类前可以添加作者注释，内容可以包括：
+    -   @author: 函数/类的创建作者
+    -   @email: 函数/类的创建作者邮箱
+-   类前的文档注释不是必须的，但类内成员要有详细注释
+
+使用 Visual Studio Code 进行开发的贡献者，推荐使用插件 [koroFileHeader](https://github.com/OBKoro1/koro1FileHeader) 来添加文档注释。
 
 ## C/C++ 代码风格规范
 
@@ -450,6 +470,8 @@ int findInFibonacci(int _tgt) {
       return input * 2.0;
   }
 ```
+
+-   所有自定义的变量名使用不以下划线开头的小驼峰命名法
 
 ### 空格和空行使用规范
 
