@@ -2,24 +2,21 @@
 
 [TOC]
 
-## Table of Contents
 
-## File Path Naming Management Specification
 
-- File names should be in the format of `ALL_CAPS_FILE_TYPE_ABBREVIATION_lowerCamelCase.FORMAT`
-  - For example, `DOC_codingStyle.md` is a valid name
-  - Where `DOC` indicates that it is a document type file
-  - `codingStyle` is a brief name for the file, using lower camel case naming
-  - `.md` indicates that it is a markdown file
+## File Storage Management Specification
 
-- Folder names should be in the format of `lowerCamelCaseAbbreviation.FORMAT`
+- File names should be named in the format of `lowercase_file_type_english_description.PascalCaseFileName.file_format`
+    - For example, `doc_CodingStyle.md` is a valid name
+    - Where `doc` indicates that this is a document-type file, which can be omitted if it's difficult to categorize
+    - Where `CodingStyle` is a brief description of the file, named using PascalCase
+    - Where `.md` indicates that this is a markdown file
+- Folder names should be named in the format of `EnglishDescriptionInPascalCase`
+- When there is a hierarchical relationship between files/folders, a `.` can be used to mark the parent-child relationship in file names
+- Special characters other than `_`, `.`, and `-` are not allowed in file names or folder names; Other characters should be replaced with `-`
+- Text files should be written and stored using the UTF-8 character set
 
-- When there is a hierarchical relationship between files/folders, a `.` can be used to mark parent-child file names
-
-- File names and folder names should not contain special characters other than `_`, `.`, `-`. Replace other characters with `-`
-
-- The file path storage management rules for each specific project should follow the content of the "Developing Note" section in the corresponding repository's `README.md`
-
+The rules for file path storage management in each specific project should be carried out according to the contents specified in the Developing Note section of the corresponding repository's README.md.
 
 
 ## General Documentation Comment Standards for Code
@@ -41,6 +38,12 @@
 - Document comments before classes are not mandatory, but detailed comments are required for class members.
 
 Contributors who use Visual Studio Code for development are recommended to use the plugin [koroFileHeader](https://github.com/OBKoro1/koro1FileHeader) to add documentation comments.
+
+
+
+---
+
+<h3 align="center">Code style should adhere to the IDE specification first, and then to the following rules when there is no IDE specification.</h3>
 
 
 
@@ -97,7 +100,7 @@ Contributors who use Visual Studio Code for development are recommended to use t
 
 - Do not add spaces on the outside of `<>`, and do not directly add spaces on the inside of `<>`, `[]`, `()`
 
-- Do not omit `{}`, but they can be written on the same line with spaces added to the inside and outside
+- When an expression contains multivariable operations, `{}` should not be omitted, but it can be written on the same line, with spaces inside and outside.
 
 ```cpp
 /* 
@@ -109,6 +112,10 @@ vector fibonacci(int _len) {
     vector vec(_len);
     vec[0] = 0;
     vec[1] = 1;
+    
+    for (int i = 2; i < 16; i++) { vec[i] = vec[i - 1] + vec[i - 2]; }
+	
+	return vec;
 }
 ```
 
@@ -131,11 +138,15 @@ vector fibonacci(int _len) {
 - Example:
 ```cpp
     // Previous code block
+
+
     int num;
     int tot;
     float tot_score;
     float rate_score;
     bool flag;
+
+
     // Next code block
 ```
 
@@ -144,6 +155,8 @@ vector fibonacci(int _len) {
   - Example: cpp
 ```cpp
     bool flag; 
+
+
     class templateClass {
         public:
             int id;
@@ -151,6 +164,8 @@ vector fibonacci(int _len) {
         protected:
             queue q;
     };
+
+
     inline int getSonNumber(templateClass _node) { return _node.val; }
 ```
 
@@ -159,6 +174,7 @@ vector fibonacci(int _len) {
   - Example:
 ```cpp
     inline int getSonNumber(templateClass _node) { return _node.val; }
+
     inline void insertSonCode(templateClass& _node, templateSonClass& _son) {
         _son.fa_id = _node.id;
         _node.val++;
@@ -173,7 +189,7 @@ vector fibonacci(int _len) {
     void complexFunction() {
         // Start of complex code block
         // ...
-        // Single blank line
+        
         // Continue with complex code block
     }
 ```
@@ -323,27 +339,30 @@ int findInFibonacci(int _tgt) {
 ```
 
 - Different code blocks should be separated by a certain number of blank lines
-
-- Between function definitions, class definitions, and other similar definition code blocks, use one blank line to separate
-
-- Between different types of definition code blocks, use two blank lines to separate
+	- Definitions of functions, etc. are separated by one blank line between blocks of the same definition.
+	- Two blank lines between different class definitions.
+	- Two blank lines between blocks of code with different definitions.
 
 ```csharp
   int num;
   int tot;
   
+
   class MyClass {
       private _id;
       private _val;
-  public int getId() {
-      return _id;
+      
+      
+      public int getId() {
+          return _id;
+      }
+
+      public int getVal() {
+          return _val;
+      }
   }
-  
-  public int getVal() {
-      return _val;
-  }
-  
-  }
+
+
   class SonClass : MyClass {}
 ```
 
